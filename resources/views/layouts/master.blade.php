@@ -3,13 +3,14 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script data-require="jquery@3.1.1" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="style.css" />
-
-    <script src="script.js"></script>
+    <script src="asset/js/cart.js" async></script>
+    <script src="asset/js/menu.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>F&B food Menu</title>
+
+
 
 <style>
 
@@ -102,11 +103,13 @@ float: right;
 .nav-link:hover .fa {
 	transform: rotate(360deg)
 }
+
 </style>
 
 </head>
 
 <body>
+    
     
  
     <nav class="navbar navbar-expand-sm navbar-light bg-dark">
@@ -131,49 +134,7 @@ float: right;
         </div>
     </nav>
 
-
-  
-
-    <div class="row row-cols-0 row-cols-md-0 g-0">
-        <div class="container d-fluid">
-            <div class="col">
-                <div class="d-flex flex-column flex-shrink-0 bg-light vh-100" style="width: 100px;">
-                    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-                        <li class="nav-item"> <a href="#" class="nav-link active py-3 border-bottom"> <i class="fa fa-home"></i> <small>Home</small> </a> </li>
-                        <li> <a href="#" class="nav-link py-3 border-bottom"> <i class="fa fa-dashboard"></i> <small>Dashboard</small> </a> </li>
-                        <li> <a href="#" class="nav-link py-3 border-bottom"> <i class="fa fa-first-order"></i> <small>My Orders</small> </a> </li>
-                        <li> <a href="#" class="nav-link py-3 border-bottom"> <i class="fa fa-cog"></i> <small>Settings</small> </a> </li>
-                        <li> <a href="#" class="nav-link py-3 border-bottom"> <i class="fa fa-bookmark"></i> <small>Bookmark</small> </a> </li>
-                    </ul>
-                    <div class="dropdown border-top"> <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false"> <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle"> </a>
-                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-                            <li><a class="dropdown-item" href="#">New project...</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
-                        </ul>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="container d-fluid">
-                @yield('content')
-                
-            </div>
-            <div class="container d-flex" >
-    
-            </div>
-        </div>
-        
-    </div>
-
-    
-
-        
-
+    @yield('content')
 
 
 

@@ -13,65 +13,59 @@
                       <li class="nav-item" style="padding-right: 10px">
                           <button type="button" class="btn btn-outline-success rounded-pill" style="width: 10rem" >Free and Organic</button>
                       </li>
-                      
                     </ul>
                   </div>
                 </nav>
 
               <div class="row row-cols-1 row-cols-md-3 g-4">
-                  <div class="col">
-                      <div class="card shadow-sm bg-white rounded " >
-                        <img src="/img/1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                              <div class="d-flex justify-content-between">
-                                  <h5 class="card-title">Food</h5>
-                                  <span>$180.00</span>
-                              </div>
-                          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <button class="btn btn-primary" type="submit">Order</button>
-                          <div class="quantity buttons_added">
-                              <input type="button" value="-" class="minus"><input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><input type="button" value="+" class="plus">
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-
-                  <div class="col">
-                      <div class="card shadow-sm bg-white rounded " >
-                          <img src="/img/2.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                              <div class="d-flex justify-content-between">
-                                  <h5 class="card-title">Food</h5>
-                                  <span>$180.00</span>
-                              </div>
-                          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <button class="btn btn-primary" type="submit">Order</button>
-                          <div class="quantity buttons_added">
-                              <input type="button" value="-" class="minus"><input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><input type="button" value="+" class="plus">
-                          </div>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col">
-                      <div class="card shadow-sm bg-white rounded">
-                          <img src="/img/3.jpg" class="card-img-top responsive" alt="...">
-                          <div class="card-body">         
-                              <div class="d-flex justify-content-between">
-                                  <h5 class="card-title">Food</h5>
-                                  <span>$180.00</span>
-                              </div>
-                          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <button class="btn btn-primary" type="submit">Order</button>
-                          <div class="quantity buttons_added">
-                              <input type="button" value="-" class="minus"><input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><input type="button" value="+" class="plus">
-                          </div>
-                          </div>
-                      </div>
-                  </div>
                   
-              </div>
-          </div>
+                    <div class="col">
+                        <div class="card shadow-sm bg-white rounded">
+                            <img src="/img/1.jpg" class="card-img-top responsive" alt="...">
+                            <div class="card-body">         
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="card-title">Food number 1</h5>
+                                    <span class="product-price">₱230.00</span>
+                                </div>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <button class="btn btn-primary order" type="submit">Order</button>
+                            
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card shadow-sm bg-white rounded">
+                            <img src="/img/2.jpg" class="card-img-top responsive" alt="...">
+                            <div class="card-body">         
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="card-title">Food number 2</h5>
+                                    <span class="product-price">₱140.00</span>
+                                </div>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <button class="btn btn-primary order" type="submit">Order</button>
+                            
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card shadow-sm bg-white rounded">
+                            <img src="/img/3.jpg" class="card-img-top responsive" alt="...">
+                            <div class="card-body">         
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="card-title">Food number 3</h5>
+                                    <span class="product-price">₱210.00</span>
+                                </div>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <button class="btn btn-primary order" type="submit">Order</button>
+                            
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
 
   
   <!-- Modal -->
@@ -91,48 +85,17 @@
                     <th scope="col">Name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
-                    <th scope="col">Subtotal</th>
+ 
                     
                   </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </td>
-                      <th scope="row"><img src="https://media-cldnry.s-nbcnews.com/image/upload/newscms/2019_21/2870431/190524-classic-american-cheeseburger-ew-207p.jpg" class="card-img-left" alt="..." style="width: 50px; height:30px; "> 
-                      </th>
-                        <td>Food</td>
-                        <td>$180.00</td>
-                        <td>
-                            <div class="quantity buttons_added">
-                            <input type="button" value="-" class="minus"><input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><input type="button" value="+" class="plus">
-                            </div>
-                        </td>
-                        <td>$180.00</td>
-
-                    </tr>
-                    <tr>
-                        <td>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </td>
-                        <th scope="row"><img src="https://media-cldnry.s-nbcnews.com/image/upload/newscms/2019_21/2870431/190524-classic-american-cheeseburger-ew-207p.jpg" class="card-img-left" alt="..." style="width: 50px; height:30px; "> 
-                        </th>
-                        <td>Food</td>
-                        <td>$180.00</td>
-                        <td>
-                            <div class="quantity buttons_added">
-                            <input type="button" value="-" class="minus"><input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><input type="button" value="+" class="plus">
-                            </div>
-                        </td>
-                        <td>$180.00</td>
-                    </tr>
-                    </tr>
+                <tbody class="cart-items">
+                    {{-- populate add order here --}}
                 </tbody>
             </table>
             <div class="d-flex justify-content-between">
                 <h5>Total: </h5>
-                <h5>150.00</h5>
+                <h5 class="cart-total-price">₱ 0.00</h5>
             </div>
         </div>
         <div class="modal-footer justify-content-between">
@@ -146,3 +109,5 @@
     </div>
 </div>
 @endsection
+
+{{-- <input type="button" value="-" class="minus"><input type="number" id="cart-quantity-input1" step="1" min="1" max="" name="cart-price-input" value="1" title="Qty" class="input-text qty text"><input type="button" value="+" class="plus"> --}}
