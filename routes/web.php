@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'DashboardController@index');
 Route::get('/menu', 'DashboardController@menu')->name('menu');
+Route::get('/test', 'DashboardController@test')->name('test');

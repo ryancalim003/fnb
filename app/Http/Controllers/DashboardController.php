@@ -21,6 +21,10 @@ class DashboardController extends Controller
         return view('menu');
     }
 
+    public function test()
+    {
+        return view('test');
+    }
     /**
      * Show the form for creating a new resource.
      *

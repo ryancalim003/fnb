@@ -1,6 +1,18 @@
 @extends('layouts.master')
 
 @section('content')
+
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+      <th>column1</th>
+      <th>column2</th>
+      <th>column3</th>
+  </tr>
+  </thead>
+<tbody id="exampleid">
+</tbody>
+</table> 
 <div class="container-fluid">
     <div class="row bg-light">
           <div class="col-sm-12" style="padding:10px">
@@ -17,54 +29,21 @@
                   </div>
                 </nav>
 
-              <div class="row row-cols-1 row-cols-md-3 g-4">
-                  
-                    <div class="col">
-                        <div class="card shadow-sm bg-white rounded">
-                            <img src="/img/1.jpg" class="card-img-top responsive" alt="...">
-                            <div class="card-body">         
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="card-title">Food number 1</h5>
-                                    <span class="product-price">₱230.00</span>
-                                </div>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <button class="btn btn-primary order" type="submit">Order</button>
-                            
-                            </div>
+              <div class="row row-cols-1 row-cols-md-3 g-4" id="data-output">
+                <div class="col">
+                      <div class="card shadow-sm bg-white rounded">
+                          <img src="${category.image}" class="card-img-top responsive" alt="...">
+                          <div class="card-body">         
+                              <div class="d-flex justify-content-between">
+                                <h5 class="card-title" id="name"></h5>
+                                  <span class="product-price">₱</span>
+                              </div>
+                          <p class="card-text" id="description"></p>
+                         <button class="btn btn-primary order" type="submit">Order</button>
                         </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card shadow-sm bg-white rounded">
-                            <img src="/img/2.jpg" class="card-img-top responsive" alt="...">
-                            <div class="card-body">         
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="card-title">Food number 2</h5>
-                                    <span class="product-price">₱140.00</span>
-                                </div>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <button class="btn btn-primary order" type="submit">Order</button>
-                            
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card shadow-sm bg-white rounded">
-                            <img src="/img/3.jpg" class="card-img-top responsive" alt="...">
-                            <div class="card-body">         
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="card-title">Food number 3</h5>
-                                    <span class="product-price">₱210.00</span>
-                                </div>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <button class="btn btn-primary order" type="submit">Order</button>
-                            
-                            </div>
-                        </div>
-                    </div>
-                  
+                      </div>
                 </div>
+              </div>
             </div>
 
   
