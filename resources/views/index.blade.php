@@ -30,7 +30,8 @@
                 </nav>
 
               <div class="row row-cols-1 row-cols-md-3 g-4" id="data-output">
-                <div class="col">
+                {{-- Add to cart function --}}
+                {{-- <div class="col" id="load_product">
                       <div class="card shadow-sm bg-white rounded">
                           <img src="${category.image}" class="card-img-top responsive" alt="...">
                           <div class="card-body">         
@@ -42,7 +43,8 @@
                          <button class="btn btn-primary order" type="submit">Order</button>
                         </div>
                       </div>
-                </div>
+                </div> --}}
+                
               </div>
             </div>
 
