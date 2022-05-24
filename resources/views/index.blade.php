@@ -2,17 +2,6 @@
 
 @section('content')
 
-<table class="table table-bordered table-striped">
-  <thead>
-  <tr>
-      <th>column1</th>
-      <th>column2</th>
-      <th>column3</th>
-  </tr>
-  </thead>
-<tbody id="exampleid">
-</tbody>
-</table> 
 <div class="container-fluid">
     <div class="row bg-light">
           <div class="col-sm-12" style="padding:10px">
