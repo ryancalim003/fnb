@@ -6,16 +6,17 @@
     <div class="row bg-light">
           <div class="col-sm-12" style="padding:10px">
               <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" style="margin-bottom:20px">
-                  <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mr-auto">
+                  <div class="collapse navbar-collapse overflow-auto" id="navbarNav">
+                    <div class="col-sm-11" >
+                    <ul class="navbar-nav mr-auto" id="category_nav">
                       <li class="nav-item" style="padding-right: 10px">
-                          <button type="button" class="btn btn-outline-success rounded-pill"  style="width:10rem" >Starters</button>
-                      </li>
-                      <li class="nav-item" style="padding-right: 10px">
-                          <button type="button" class="btn btn-outline-success rounded-pill" style="width: 10rem" >Free and Organic</button>
+                        <button type="button" class="btn btn-outline-success rounded"  style="width:5rem" id="all">All</button>
                       </li>
                     </ul>
                   </div>
+
+                  </div>
+
                 </nav>
 
               <div class="row row-cols-1 row-cols-md-3 g-4" id="data-output">
