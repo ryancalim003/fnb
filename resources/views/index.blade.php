@@ -6,8 +6,8 @@
     <div class="row bg-light">
           <div class="col-sm-12" style="padding:10px">
               <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" style="margin-bottom:20px">
-                  <div class="collapse navbar-collapse overflow-auto" id="navbarNav">
-                    <div class="col-sm-11" >
+                  <div class="collapse navbar-collapse overflow-auto" id="">
+                    <div class="col-sm-11" id = "navbarNav">
                     <ul class="navbar-nav mr-auto" id="category_nav">
                       <li class="nav-item" style="padding-right: 10px">
                         <button type="button" class="btn btn-outline-success rounded"  style="width:5rem" id="all">All</button>
@@ -18,7 +18,10 @@
                   </div>
 
                 </nav>
-
+              
+                <input type="text" id="the-filter" placeholder="Search For..."/>
+              
+ 
               <div class="row row-cols-1 row-cols-md-3 g-4" id="data-output">
                 {{-- Add to cart function --}}
                 {{-- <div class="col" id="load_product">
@@ -79,6 +82,7 @@
           
     </div>
 </div>
+
 @endsection
 
 {{-- <input type="button" value="-" class="minus"><input type="number" id="cart-quantity-input1" step="1" min="1" max="" name="cart-price-input" value="1" title="Qty" class="input-text qty text"><input type="button" value="+" class="plus"> --}}

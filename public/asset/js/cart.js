@@ -6,7 +6,7 @@ if (document.readyState == 'loading') {
 
 function ready() {
     var removeCartItemButtons = document.getElementsByClassName('btn-close btn-linked')
-    console.log(removeCartItemButtons)
+    //console.log(removeCartItemButtons)
 
     for (var i = 0; i < removeCartItemButtons.length; i++) {
         var button = removeCartItemButtons[i]

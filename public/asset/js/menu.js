@@ -5,28 +5,31 @@ fetch("http://128.168.64.101:8000/api/foodcart/3")
 })
 
 .then(function(categories){
+
     var menu =""; 
         var categories = categories.data;     
         for (let i = 0; i < categories.length; i++) {
             var category = categories[i];
-            console.log(category.name)
+            // console.log(category.name)
             var category_holder = document.createElement('div')
             category_holder.innerHTML = `
-            <div class="col-sm-11">
-                <ul class="navbar-nav mr-auto" >
-                <li class="nav-item" style="padding-right: 10px">
-                    <button type="button" class="btn btn-outline-success rounded"  style="width:15rem" id="`+category.name+`">`+category.name+`</button>
-                </li>
-                </ul>
-            </div>`;
+
+       
+                <div class = "category-title" id="`+category.name+`">
+                    <li class="nav-item" style="padding-right: 10px">
+                        <button type="button" class="btn btn-outline-success rounded"  style="width:15rem" id="`+category.name+`">`+category.name+`</button>
+                    </li>
+                </div>
+                `;
             document.getElementById("category_nav").append(category_holder)
 
             for (let i = 0; i < category.menus.length; i++) {
                 var menu = category.menus[i];
-                console.log(menu)    
+                // console.log(menu)    
                 var placeholder = document.createElement('div')
+                placeholder.className = "all "+category.name;
                 placeholder.innerHTML = `
-                    <div class="card shadow-sm bg-white rounded">`+
+                    <div class="card shadow-sm bg-white rounded" id="`+category.name+`">`+
                     `<img src="http://128.168.64.101:8000/images/`+menu.banner+`" class="card-img-top responsive" alt="...">`+
                         `<div class="card-body">`+
                             `<div class="d-flex justify-content-between">`+
@@ -39,9 +42,11 @@ fetch("http://128.168.64.101:8000/api/foodcart/3")
                         `</div>`+
                     `</div>`;
                 document.getElementById("data-output").appendChild(placeholder)
+                
             }
             
         }
+        
         if (document.readyState == 'loading') {
             document.addEventListener('DOMContentLoaded', ready)
         } else {
@@ -168,3 +173,22 @@ function loadProducts(data){
     document.getElementById("data-output").appendChild(placeholder)
     console.log(data.name)
 }
+
+window.addEventListener("load", () => {
+    // (A) GET HTML ELEMENTS
+    var filter = document.getElementById("the-filter"), // search box
+        list = document.querySelectorAll("#data-output div"); // all list items
+
+    // (B) ATTACH KEY UP LISTENER TO SEARCH BOX
+    filter.onkeyup = () => {
+      // (B1) GET CURRENT SEARCH TERM
+      let search = filter.value.toLowerCase();
+   console.log(list)
+      // (B2) LOOP THROUGH LIST ITEMS - ONLY SHOW THOSE THAT MATCH SEARCH
+      for (let i of list) {
+        let item = i.innerHTML.toLowerCase();
+        if (item.indexOf(search) == -1) { i.classList.add("hide"); }
+        else { i.classList.remove("hide"); }   console.log(item)
+      }
+    };
+  });
