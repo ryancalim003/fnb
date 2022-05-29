@@ -7,29 +7,26 @@ fetch("http://128.168.64.101:8000/api/foodcart/3")
 .then(function(categories){
 
     var menu =""; 
-        var categories = categories.data;     
+        var categories = categories.data;
         for (let i = 0; i < categories.length; i++) {
             var category = categories[i];
             // console.log(category.name)
             var category_holder = document.createElement('div')
             category_holder.innerHTML = `
-
-       
                 <div class = "category-title" id="`+category.name+`">
                     <li class="nav-item" style="padding-right: 10px">
-                        <button type="button" class="btn btn-outline-success rounded"  style="width:15rem" id="`+category.name+`">`+category.name+`</button>
+                        <button class="btn btn-outline-success rounded" style="width:15rem" onclick="filterSelection('`+category.name+`')">`+category.name+`</button>
                     </li>
-                </div>
-                `;
+                </div>`;
             document.getElementById("category_nav").append(category_holder)
 
             for (let i = 0; i < category.menus.length; i++) {
                 var menu = category.menus[i];
                 // console.log(menu)    
                 var placeholder = document.createElement('div')
-                placeholder.className = "all "+category.name;
+                placeholder.className = "filterDiv "+category.name;
                 placeholder.innerHTML = `
-                    <div class="card shadow-sm bg-white rounded" id="`+category.name+`">`+
+                    <div class="card shadow-sm bg-white rounded" id="">`+
                     `<img src="http://128.168.64.101:8000/images/`+menu.banner+`" class="card-img-top responsive" alt="...">`+
                         `<div class="card-body">`+
                             `<div class="d-flex justify-content-between">`+
@@ -38,45 +35,49 @@ fetch("http://128.168.64.101:8000/api/foodcart/3")
                             `</div>`+
                                 `<p class="card-text" id="">`+menu.description+`</p>`+
                                 `<button class="btn btn-primary order" type="submit">Order</button>`+
-                                `<input type="button" value="-" class="minus"><input type="number" id="cart-quantity-input1" step="1" min="1" max="" name="cart-price-input" value="1" title="Qty" class="input-text qty text"><input type="button" value="+" class="plus">`+
+                                `<div class="quantity buttons_added">
+                                <input type="button" value="-" class="minus"><input type="number" id="count" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><input type="button" value="+" class="plus">
+                              </div>`+
                         `</div>`+
                     `</div>`;
                 document.getElementById("data-output").appendChild(placeholder)
+               
                 
             }
             
         }
-        
-        if (document.readyState == 'loading') {
-            document.addEventListener('DOMContentLoaded', ready)
-        } else {
-            ready()
-        }       
-    });
+        document.getElementById("show_all").click();
+    if (document.readyState == 'loading') {
+        document.addEventListener('DOMContentLoaded', ready)
+    } else {
+        ready()
+    }       
+});
 
-    function ready() {
-        var removeCartItemButtons = document.getElementsByClassName('btn-close btn-linked')
-        console.log(removeCartItemButtons)
+function ready() {
+
+    var removeCartItemButtons = document.getElementsByClassName('btn-close btn-linked')
+    console.log(removeCartItemButtons)
+
+    for (var i = 0; i < removeCartItemButtons.length; i++) {
+        var button = removeCartItemButtons[i]
+        button.addEventListener('click', removeCartItem)
     
-        for (var i = 0; i < removeCartItemButtons.length; i++) {
-            var button = removeCartItemButtons[i]
-            button.addEventListener('click', removeCartItem)
+    } 
+
+    var quantityInputs = document.getElementsByClassName('input-text qty text')
+    for (var i = 0; i < quantityInputs.length; i++) {
+        var input = quantityInputs[i]
         
-        } 
-    
-        var quantityInputs = document.getElementsByClassName('input-text qty text')
-        for (var i = 0; i < quantityInputs.length; i++) {
-            var input = quantityInputs[i]
-            
-            input.addEventListener('change', quantityChanged)
-        }
-        
-        var addToCartButtons = document.getElementsByClassName('btn btn-primary order')
-        for (var i = 0; i < addToCartButtons.length; i++) {
-            var button = addToCartButtons[i]
-            button.addEventListener('click', addToCartClicked)
-        }
+        input.addEventListener('change', quantityChanged)
     }
+    
+    var addToCartButtons = document.getElementsByClassName('btn btn-primary order')
+    for (var i = 0; i < addToCartButtons.length; i++) {
+        var button = addToCartButtons[i]
+        button.addEventListener('click', addToCartClicked)
+    }
+}
    
 function addToCartClicked(event) {
     var button = event.target
@@ -84,11 +85,12 @@ function addToCartClicked(event) {
     var menu = shop.getElementsByClassName('card-title')[0].innerText
     var image = shop.getElementsByClassName('card-img-top responsive')[0].src
     var price = shop.getElementsByClassName('product-price')[0].innerText
-    addItemToCart(menu, image, price)
+    var count = shop.getElementsByClassName('count')[0].value
+    addItemToCart(menu, image, price, count)
     updateCartTotal()
 }
 
-function addItemToCart(menu, image, price) {
+function addItemToCart(menu, image, price,  count) {
     var cartRow = document.createElement('tr')
     cartRow.classList.add('cart-row')
     var cartItems = document.getElementsByClassName('cart-items')[0]
@@ -171,6 +173,10 @@ function loadProducts(data){
                 `</div>`+
             `</div>`;
     document.getElementById("data-output").appendChild(placeholder)
+    var filter = document.getElementById("the-filter"), // search box
+    list = document.querySelectorAll("#data-output div"); // all list items
+
+
     console.log(data.name)
 }
 
@@ -183,12 +189,12 @@ window.addEventListener("load", () => {
     filter.onkeyup = () => {
       // (B1) GET CURRENT SEARCH TERM
       let search = filter.value.toLowerCase();
-   console.log(list)
+    console.log(search)
       // (B2) LOOP THROUGH LIST ITEMS - ONLY SHOW THOSE THAT MATCH SEARCH
       for (let i of list) {
         let item = i.innerHTML.toLowerCase();
         if (item.indexOf(search) == -1) { i.classList.add("hide"); }
-        else { i.classList.remove("hide"); }   console.log(item)
+        else { i.classList.remove("hide"); }   console.log(search)
       }
     };
   });

@@ -103,7 +103,19 @@ float: right;
 .nav-link:hover .fa {
 	transform: rotate(360deg)
 }
+.filterDiv {
 
+display: none;
+}
+
+.show {
+display: block;
+}
+
+.btn.active {
+background-color: #666;
+color: white;
+}
 
 </style>
 
