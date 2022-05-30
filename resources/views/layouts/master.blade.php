@@ -116,7 +116,7 @@ display: block;
 background-color: #666;
 color: white;
 }
-
+#data-output div.hide { display: none; }
 </style>
 
 </head>

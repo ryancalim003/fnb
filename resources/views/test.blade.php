@@ -16,22 +16,7 @@
      color: white;
    }
    </style>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" style="margin-bottom:20px">
-   <div class="collapse navbar-collapse overflow-auto" id="">
-     <div class="col-sm-11" id = "navbarNav">
-     <ul class="navbar-nav mr-auto" id="category_nav">
-       <li class="nav-item" style="padding-right: 10px">
-         {{-- <button type="button" class="btn btn-outline-success rounded"  style="width:5rem" id="all">All</button> --}}
-         <button class="btn" onclick="filterSelection('all')"> Show all</button>
-
-       </li>
-     </ul>
-   </div>
-
-   </div>
-
- </nav>
+   
 <div id="myBtnContainer">
    <button class="btn" onclick="filterSelection('all')"> Show all</button>
    <button class="btn" onclick="filterSelection('Starter')"> Starter</button>

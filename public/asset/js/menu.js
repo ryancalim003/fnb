@@ -1,4 +1,5 @@
-fetch("http://128.168.64.101:8000/api/foodcart/3")
+//fetch("http://128.168.64.101:8000/api/foodcart/3")
+fetch("http://128.168.64.101:8000/api/foodcart?area_id=3&keyword=&searchby=")
 //fetch("asset/js/products.json")
 .then(function(response){
     return response.json();
@@ -26,7 +27,7 @@ fetch("http://128.168.64.101:8000/api/foodcart/3")
                 var placeholder = document.createElement('div')
                 placeholder.className = "filterDiv "+category.name;
                 placeholder.innerHTML = `
-                    <div class="card shadow-sm bg-white rounded" id="">`+
+                    <div class="card shadow-sm bg-white rounded" id="`+menu.name+`">`+
                     `<img src="http://128.168.64.101:8000/images/`+menu.banner+`" class="card-img-top responsive" alt="...">`+
                         `<div class="card-body">`+
                             `<div class="d-flex justify-content-between">`+
@@ -41,17 +42,32 @@ fetch("http://128.168.64.101:8000/api/foodcart/3")
                         `</div>`+
                     `</div>`;
                 document.getElementById("data-output").appendChild(placeholder)
-               
                 
             }
-            
+        // (A) GET HTML ELEMENTS
+        var filter = document.getElementById("the-filter"), // search box
+            list = document.querySelectorAll("#data-output div"); // all list items
+
+        // (B) ATTACH KEY UP LISTENER TO SEARCH BOX
+        filter.onkeyup = () => {
+        // (B1) GET CURRENT SEARCH TERM
+        let search = filter.value.toLowerCase();
+
+        // (B2) LOOP THROUGH LIST ITEMS - ONLY SHOW THOSE THAT MATCH SEARCH
+        for (let i of list) {
+            let item = i.innerHTML.toLowerCase();
+            if (item.indexOf(search) == -1) { i.classList.add("hide"); }
+            else { i.classList.remove("hide"); }
         }
-        document.getElementById("show_all").click();
-    if (document.readyState == 'loading') {
-        document.addEventListener('DOMContentLoaded', ready)
-    } else {
-        ready()
-    }       
+        };
+            }
+        
+            document.getElementById("show_all").click();
+        if (document.readyState == 'loading') {
+            document.addEventListener('DOMContentLoaded', ready)
+        } else {
+            ready()
+        }       
 });
 
 function ready() {
@@ -85,10 +101,12 @@ function addToCartClicked(event) {
     var menu = shop.getElementsByClassName('card-title')[0].innerText
     var image = shop.getElementsByClassName('card-img-top responsive')[0].src
     var price = shop.getElementsByClassName('product-price')[0].innerText
-    var count = shop.getElementsByClassName('count')[0].value
+    var count = shop.getElementsByClassName('input-text qty text')[0].value
+
     addItemToCart(menu, image, price, count)
     updateCartTotal()
 }
+
 
 function addItemToCart(menu, image, price,  count) {
     var cartRow = document.createElement('tr')
@@ -112,7 +130,7 @@ function addItemToCart(menu, image, price,  count) {
                 <td class="cart-price">${price}</td>
                 <td>
                     <div class="quantity buttons_added">
-                        <input class="input-text qty text" type="number" value="1">
+                        <input class="input-text qty text" type="number" id="count">
                     </div>
                 </td>
             `
@@ -120,6 +138,7 @@ function addItemToCart(menu, image, price,  count) {
     cartItems.append(cartRow)
     cartRow.getElementsByClassName('btn-close btn-linked')[0].addEventListener('click',removeCartItem)
     cartRow.getElementsByClassName('input-text qty text')[0].addEventListener('change',quantityChanged)
+    
     
 }
 
