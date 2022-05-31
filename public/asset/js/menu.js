@@ -7,7 +7,7 @@ fetch("http://128.168.64.101:8000/api/foodcart?area_id=3&keyword=&searchby=")
 
 .then(function(categories){
 
-    var menu =""; 
+        var menu =""; 
         var categories = categories.data;
         for (let i = 0; i < categories.length; i++) {
             var category = categories[i];
@@ -44,37 +44,19 @@ fetch("http://128.168.64.101:8000/api/foodcart?area_id=3&keyword=&searchby=")
                 document.getElementById("data-output").appendChild(placeholder)
                 
             }
-        // (A) GET HTML ELEMENTS
-        var filter = document.getElementById("the-filter"), // search box
-            list = document.querySelectorAll("#data-output div"); // all list items
 
-        // (B) ATTACH KEY UP LISTENER TO SEARCH BOX
-        filter.onkeyup = () => {
-        // (B1) GET CURRENT SEARCH TERM
-        let search = filter.value.toLowerCase();
-
-        // (B2) LOOP THROUGH LIST ITEMS - ONLY SHOW THOSE THAT MATCH SEARCH
-        for (let i of list) {
-            let item = i.innerHTML.toLowerCase();
-            if (item.indexOf(search) == -1) { i.classList.add("hide"); }
-            else { i.classList.remove("hide"); }
+            wcqib_refresh_quantity_increments()
+            search()
         }
-        };
-            }
-        
             document.getElementById("show_all").click();
-        if (document.readyState == 'loading') {
-            document.addEventListener('DOMContentLoaded', ready)
-        } else {
             ready()
-        }       
+            
+            
 });
 
 function ready() {
 
     var removeCartItemButtons = document.getElementsByClassName('btn-close btn-linked')
-    console.log(removeCartItemButtons)
-
     for (var i = 0; i < removeCartItemButtons.length; i++) {
         var button = removeCartItemButtons[i]
         button.addEventListener('click', removeCartItem)
@@ -103,10 +85,30 @@ function addToCartClicked(event) {
     var price = shop.getElementsByClassName('product-price')[0].innerText
     var count = shop.getElementsByClassName('input-text qty text')[0].value
 
+    console.log(count);
     addItemToCart(menu, image, price, count)
     updateCartTotal()
+    
 }
 
+function search(){
+        // (A) GET HTML ELEMENTS
+        var filter = document.getElementById("the-filter"), // search box
+        list = document.querySelectorAll("#data-output div"); // all list items
+
+        // (B) ATTACH KEY UP LISTENER TO SEARCH BOX
+        filter.onkeyup = () => {
+        // (B1) GET CURRENT SEARCH TERM
+        let search = filter.value.toLowerCase();
+
+        // (B2) LOOP THROUGH LIST ITEMS - ONLY SHOW THOSE THAT MATCH SEARCH
+        for (let i of list) {
+            let item = i.innerHTML.toLowerCase();
+            if (item.indexOf(search) == -1) { i.classList.add("hide"); }
+            else { i.classList.remove("hide"); }
+        }
+        };
+}
 
 function addItemToCart(menu, image, price,  count) {
     var cartRow = document.createElement('tr')
@@ -130,8 +132,10 @@ function addItemToCart(menu, image, price,  count) {
                 <td class="cart-price">${price}</td>
                 <td>
                     <div class="quantity buttons_added">
-                        <input class="input-text qty text" type="number" id="count">
+                        <input type="button" value="-" class="minus" id="minus"><input type="number" id="count" step="1" min="1" max="" name="quantity" value="${count}" title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><input type="button" value="+" id="plus" class="plus">
                     </div>
+                    
+                    
                 </td>
             `
     cartRow.innerHTML = cartRowContents
@@ -153,7 +157,13 @@ function quantityChanged(event) {
     if(isNaN(input.value) || input.value <= 0){
         input.value = 1
     }
+    
     updateCartTotal()
+}
+
+function minusQuantity(){
+    var button = cartRow.getElementById('#count')[0]
+    console.log(button);
 }
 
 function updateCartTotal() {
@@ -171,6 +181,7 @@ function updateCartTotal() {
 
     }
     total = Math.round(total * 100) / 100
+    console.log(quantity);
     document.getElementsByClassName('cart-total-price')[0].innerText = '₱' + total
     
 }
@@ -199,21 +210,70 @@ function loadProducts(data){
     console.log(data.name)
 }
 
-window.addEventListener("load", () => {
-    // (A) GET HTML ELEMENTS
-    var filter = document.getElementById("the-filter"), // search box
-        list = document.querySelectorAll("#data-output div"); // all list items
+function wcqib_refresh_quantity_increments() {
+    jQuery("div.quantity:not(.buttons_added), td.quantity:not(.buttons_added)").each(function(a, b) {
+        var c = jQuery(b);
+        c.addClass("buttons_added"), c.children().first().before('<input type="button" value="-" class="minus" />'), c.children().last().after('<input type="button" value="+" class="plus" />')
+    })
+}
 
-    // (B) ATTACH KEY UP LISTENER TO SEARCH BOX
-    filter.onkeyup = () => {
-      // (B1) GET CURRENT SEARCH TERM
-      let search = filter.value.toLowerCase();
-    console.log(search)
-      // (B2) LOOP THROUGH LIST ITEMS - ONLY SHOW THOSE THAT MATCH SEARCH
-      for (let i of list) {
-        let item = i.innerHTML.toLowerCase();
-        if (item.indexOf(search) == -1) { i.classList.add("hide"); }
-        else { i.classList.remove("hide"); }   console.log(search)
+String.prototype.getDecimals || (String.prototype.getDecimals = function() {
+    var a = this,
+        b = ("" + a).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+    return b ? Math.max(0, (b[1] ? b[1].length : 0) - (b[2] ? +b[2] : 0)) : 0
+}), jQuery(document).ready(function() {
+    wcqib_refresh_quantity_increments()
+}), jQuery(document).on("updated_wc_div", function() {
+    wcqib_refresh_quantity_increments()
+}), jQuery(document).on("click", ".plus, .minus", function() {
+    var a = jQuery(this).closest(".quantity").find(".qty"),
+        b = parseFloat(a.val()),
+        c = parseFloat(a.attr("max")),
+        d = parseFloat(a.attr("min")),
+        e = a.attr("step");
+    b && "" !== b && "NaN" !== b || (b = 0), "" !== c && "NaN" !== c || (c = ""), "" !== d && "NaN" !== d || (d = 0), "any" !== e && "" !== e && void 0 !== e && "NaN" !== parseFloat(e) || (e = 1), jQuery(this).is(".plus") ? c && b >= c ? a.val(c) : a.val((b + parseFloat(e)).toFixed(e.getDecimals())) : d && b <= d ? a.val(d) : b > 0 && a.val((b - parseFloat(e)).toFixed(e.getDecimals())), a.trigger("change")
+});
+
+function filterSelection(c) {
+    var x, i;
+    x = document.getElementsByClassName("filterDiv");
+    if (c == "all") c = "";
+    for (i = 0; i < x.length; i++) {
+      w3RemoveClass(x[i], "show");
+      if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+    }
+  }
+ 
+  function w3AddClass(element, name) {
+    var i, arr1, arr2;
+    arr1 = element.className.split(" ");
+    arr2 = name.split(" ");
+    for (i = 0; i < arr2.length; i++) {
+      if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+    }
+  }
+  
+  function w3RemoveClass(element, name) {
+    var i, arr1, arr2;
+    arr1 = element.className.split(" ");
+    arr2 = name.split(" ");
+    for (i = 0; i < arr2.length; i++) {
+      while (arr1.indexOf(arr2[i]) > -1) {
+        arr1.splice(arr1.indexOf(arr2[i]), 1);     
       }
-    };
-  });
+    }
+    element.className = arr1.join(" ");
+  }
+  
+  // Add active class to the current button (highlight it)
+  var btnContainer = document.getElementById("myBtnContainer");
+  var btns = btnContainer.getElementById("show_all");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function(){
+      var current = document.getElementsByClassName("active");
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";
+    });
+  }
+ 
+ 
